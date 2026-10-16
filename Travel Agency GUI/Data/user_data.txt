@@ -1,8 +1,9 @@
-
-User Name : atif
-Password : 12345
-Email : 23504841@aiub.edu
-Security Question : Your dream job?
-Answer : SwE
-Time & Date : 02:05 AM, 19/12/2023
-===============================================
+User Name : ziad
+Password : ziad
+Name : Demo User
+Email : demo@example.com
+Phone : 01000000000
+Gender : N/A
+Date of Birth : 01-01-2000
+Question : What is your favourite place?
+Answer : Dhaka
