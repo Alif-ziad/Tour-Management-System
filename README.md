@@ -1,29 +1,38 @@
 <div align="center">
 
 # Travel Agency Management System
-### Java Swing Desktop Application
+### Java Swing Desktop Application · Academic Coursework Repository
 
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=flat-square&logo=openjdk&logoColor=white)
 ![Swing](https://img.shields.io/badge/GUI-Java%20Swing-5382a1?style=flat-square)
+![AWT](https://img.shields.io/badge/UI-Swing%20%2B%20AWT-6e7681?style=flat-square)
 ![OOP](https://img.shields.io/badge/design-OOP-6e7681?style=flat-square)
-![Status](https://img.shields.io/badge/status-academic%20project-blue?style=flat-square)
+![Status](https://img.shields.io/badge/status-academic%20project-2ea44f?style=flat-square)
 
 </div>
 
-A desktop travel-agency application built with **Java Swing/AWT**. The main implementation provides user registration/login, administrator access, domestic and international tour browsing, predefined/custom package flows, local price calculation, and simulated card/mobile-banking payment screens.
+A Java coursework repository for a travel-agency management system. The recommended portfolio implementation is the **Java Swing/AWT desktop application** under `Travel Agency GUI/`. The repository also preserves an **earlier console-based implementation** under `user data/`.
 
-## What the project demonstrates
+The Swing application demonstrates multi-screen desktop UI design, event-driven programming, file-based demo account storage, domestic/international package browsing, custom package configuration and local price calculation, administrator workflows, and simulated payment interfaces.
 
-- Multi-screen Java Swing application design
-- Event-driven GUI programming
-- User and administrator flows
-- File-based persistence for demo accounts
-- Domestic and international package navigation
-- Custom package configuration and price calculation
-- Simulated payment UI workflows
-- Object-oriented organization across multiple Java classes
+> **Scope note:** this is an academic demonstration, not a production booking or payment service. Payment screens are simulations and the local account files use plaintext demo data.
 
-## Main application flow
+## Project snapshot
+
+| Area | Details |
+|---|---|
+| Primary language | Java |
+| Main UI | Java Swing + AWT |
+| Main entry point | `Travel Agency GUI/Start.java` |
+| Persistence | Local text files for demo accounts |
+| User flows | Registration, login, package selection, custom package pricing |
+| Admin flows | Login, view/add/delete user data, password-management UI |
+| Destinations | 5 domestic + 5 international options |
+| Payment | Card and mobile-banking UI simulations only |
+| Secondary implementation | Earlier console application in `user data/` |
+| Status | Academic coursework / portfolio demonstration |
+
+## Main Swing application flow
 
 ```text
 Start
@@ -40,82 +49,116 @@ Home
   │      │      └── International destinations
   │      └── Custom Package
   │             ↓
-  │          Payment
-  │             ├── Card
-  │             └── Mobile Banking
+  │          Local Price Calculation
+  │             ↓
+  │          Payment Option
+  │             ├── Card UI
+  │             └── Mobile Banking UI
   └── Admin Login
          ↓
       Admin Panel
+         ├── User Data
+         └── Admin Password
 ```
 
 ## Implemented user features
 
-### Authentication and registration
+### Registration and login
 
-- Register a local demo account
-- Validate basic registration fields
-- Store account information in the project data file
-- Log in using the locally stored username/password pair
+The Swing application includes:
 
-### Tour/package selection
+- local demo-account registration;
+- basic field validation;
+- a simple arithmetic CAPTCHA;
+- security-question/answer fields;
+- timestamped registration records;
+- username/password login against the local data file.
 
-The predefined-package flow separates destinations into domestic and international groups.
+Runtime registrations are written to `Travel Agency GUI/Data/user_data.txt` in plaintext. This design is suitable only for coursework/demo use.
+
+### Default tour packages
+
+The predefined-package flow separates destinations into domestic and international choices.
 
 **Domestic destinations represented in the source:**
 
-- Sreemangal
 - Cox's Bazar
 - Sajek Valley
-- Rangamati
+- Sreemangal
 - Bandarban
+- Rangamati
 
 **International destinations represented in the source:**
 
 - India
 - China
-- Indonesia
 - Thailand
 - Maldives
+- Indonesia
+
+Each destination has a dedicated Swing screen in the main application.
 
 ### Custom package builder
 
-The custom-package screen allows configuration of items such as:
+`SelfChoosenPacks.java` provides a configurable package flow with options for:
 
-- Travel date
-- Number of travelers
-- Hotel quality
-- Transport choice
-- AC / non-AC options
+- international or domestic travel;
+- destination;
+- number of travelers;
+- number of days;
+- hotel type;
+- transport method;
+- transport/vehicle class where applicable.
 
-The application calculates a local demo price from the selected options before continuing to the payment interface.
+The application calculates a local demo price from the selected options before continuing to the payment UI. The prices are hard-coded demonstration values rather than live booking data.
 
-### Payment UI
+### Payment interfaces
 
-Two payment paths are represented:
+The application provides two simulated payment paths:
 
-- Card-payment form
-- Mobile-banking form with bKash/Rocket/Nagad choices
+- card-payment form;
+- mobile-banking form.
 
-**These are interface simulations only.** The application does not connect to a real payment gateway, bank, mobile-financial-service API, or live transaction processor.
+The card screen collects interface fields such as cardholder name, number, validity and CVV. The mobile-banking screen collects a phone number, OTP and PIN field. The program only performs basic form checks and then displays a success screen; it does **not** communicate with a bank, payment gateway, bKash, Nagad, or another transaction processor.
+
+**Do not enter real financial credentials when running the project.**
 
 ## Administrator features
 
-The administrator flow includes screens for:
+The Swing administrator flow includes:
 
-- Admin login
-- Viewing locally stored user data
-- Registering an additional administrator
-- Deleting an account
-- Changing an administrator password
-- Logging out
+- local admin login;
+- viewing locally stored user records in a table;
+- adding a user through the admin interface;
+- marking/removing user records;
+- administrator-password management screens;
+- navigation back to the main application.
+
+The implementation reads local text files and is not intended as a secure production administration system.
+
+## Two implementations are preserved
+
+### 1. `Travel Agency GUI/` — recommended/current portfolio implementation
+
+This directory contains the Swing/AWT desktop application and its UI assets. `Start.java` opens the welcome screen, which then leads into the application workflow.
+
+### 2. `user data/` — earlier console implementation
+
+This directory preserves an older command-line implementation with separate default/domestic/international Java packages and text-based account operations.
+
+The legacy console source explicitly identifies **Team "Sqaure", Group 6** and names four contributors. Because the main Swing source does not contain the same contributor table, those names are attributed specifically to the console implementation rather than automatically assigned to the Swing application.
+
+See **[CONTRIBUTORS.md](CONTRIBUTORS.md)** for the evidence-based contributor/source-lineage record.
 
 ## Repository structure
 
 ```text
 .
 ├── README.md
-├── Travel Agency GUI/              # Main/current Swing application
-│   ├── Start.java                  # Application entry point
+├── CONTRIBUTORS.md
+├── .gitignore
+├── Travel Agency GUI/                  # Recommended Swing application
+│   ├── Start.java                      # Main entry point
 │   ├── Welcome.java
 │   ├── Home.java
 │   ├── Registration.java
@@ -124,67 +167,126 @@ The administrator flow includes screens for:
 │   ├── DefPackTypes.java
 │   ├── DomPlaces.java
 │   ├── IntCountries.java
-│   ├── Domestic*.java
-│   ├── International*.java
-│   ├── SelfChoosenPacks.java
+│   ├── Domestic*.java                  # Domestic destination screens
+│   ├── International*.java             # International destination screens
+│   ├── SelfChoosenPacks.java           # Custom package + local pricing
 │   ├── Paymentoption.java
 │   ├── CardPayment.java
 │   ├── MobileBanking.java
+│   ├── PaySuccess.java
 │   ├── Admin*.java
-│   ├── Data/                       # Local demo account files
-│   ├── images/                     # UI/destination assets
+│   ├── UserData.java
+│   ├── Data/                           # Local synthetic/demo account files
+│   ├── images/                         # UI and destination assets
 │   └── run.sh
-└── user data/                      # Earlier/alternate coursework implementation
+└── user data/                          # Earlier console implementation
+    ├── Start.java
+    ├── Verifylogin.java
+    ├── Back.java
+    ├── Default/
+    ├── Domestic/
+    └── International/
 ```
 
-The repository also contains previously generated `.class` files. They are build artifacts rather than source; new generated class files are now ignored through `.gitignore`.
+The repository also contains historically committed `.class` files. They are generated build artifacts rather than source code; future generated class files are excluded by `.gitignore`.
 
 ## Run locally
 
 ### Requirements
 
-- A Java Development Kit (JDK)
+- Java Development Kit (JDK)
 - `javac` and `java` available on your PATH
-- A desktop environment capable of displaying Swing windows
+- desktop environment capable of displaying Java Swing windows
 
-### Compile and run
+### Recommended: included script
+
+From the repository root:
 
 ```bash
 cd "Travel Agency GUI"
-javac *.java
+chmod +x run.sh
+./run.sh
+```
+
+The script removes old `.class` files from the application directory, compiles `Start.java`, and launches the application.
+
+### Manual compile/run
+
+```bash
+cd "Travel Agency GUI"
+javac Start.java
 java Start
 ```
 
-The included `run.sh` performs the same basic compile/run sequence on a compatible shell environment.
+`javac` resolves and compiles the referenced source classes in the same default package as needed.
 
-## Data and security note
+### Platform note
 
-This is an academic desktop project and its account storage was designed for local demonstration, not production authentication.
+Several data-file paths in the historical source use Windows-style backslashes such as `.\\Data\\user_data.txt`. The project is preserved close to the coursework implementation, so behavior may vary by operating system. If running on Linux/macOS and a data-file path fails, run the application from `Travel Agency GUI/` and adjust those historical path strings locally if necessary.
 
-The current design:
+## Data and security notes
 
-- Uses text files instead of a database
-- Stores demo passwords/account fields in plaintext
-- Uses local test credentials
-- Simulates payment forms without secure payment processing
-- Does not encrypt local user records
+The current tracked user sample is synthetic demo data, and the repository should be treated strictly as a learning/portfolio project.
 
-Do **not** use real passwords, payment-card data, mobile-banking PINs, or other sensitive credentials when testing this project.
+The historical design:
 
-A production redesign should use a proper database, password hashing, access control, secure secret handling, validated payment-provider integrations, stronger input validation, and a clearer separation between UI, business logic, and persistence.
+- stores account records in plaintext text files;
+- stores passwords and security-question answers without hashing;
+- exposes user fields to the local admin UI;
+- relies on local/default demo administrator credentials;
+- performs only basic input validation;
+- simulates financial forms without secure payment processing;
+- does not encrypt local records;
+- has no production authorization or session layer.
+
+Do **not** use real passwords, payment-card data, mobile-banking PINs, OTPs, or other sensitive credentials when testing this project.
+
+A production redesign should use a proper persistence layer, password hashing, stronger validation, role-based authorization, secure secret handling, safer account-recovery design, and validated payment-provider integrations.
+
+## What this project demonstrates
+
+- Java Swing/AWT desktop GUI development
+- event-driven application navigation
+- multi-screen workflow design
+- Java file I/O and simple persistence
+- administrator/user flow separation
+- dynamic package-selection controls
+- hard-coded pricing logic for a coursework prototype
+- table-based administration UI
+- object-oriented organization across multiple Java classes
+- maintaining both GUI and earlier console implementations of the same problem domain
+
+## Contributors and attribution
+
+This repository contains mixed project lineage, so contributor credit is intentionally evidence-based.
+
+### Main Swing application
+
+The current Swing source under `Travel Agency GUI/` does **not** contain an explicit team roster or contribution table. The repository therefore does not invent co-author names or percentages for this implementation.
+
+**Repository maintainer:** MD Alif Ziad Sarkar
+
+### Earlier console implementation
+
+The source file `user data/Start.java` explicitly labels the project as **Travel agency**, **Team "Sqaure"**, **Group 6**, and lists:
+
+- **Moshiur Rahman Nahin**
+- **Farhan Sadik Ferdous**
+- **Tapu Biswas**
+- **Zaid Amin Rawfin**
+
+Those names are credited specifically to the earlier console implementation because that is what the repository evidence supports. No student IDs, contribution percentages, or GitHub usernames are stated there, so none are inferred.
+
+Full attribution note: **[CONTRIBUTORS.md](CONTRIBUTORS.md)**.
 
 ## Repository maintenance notes
 
-- `.class` files already committed historically remain in the repository, but future generated class files are ignored.
-- `.DS_Store`, editor metadata and temporary files are now ignored.
-- The `user data/` folder is preserved as an earlier/alternate implementation and is not the recommended entry point.
-- `Travel Agency GUI/Start.java` is the main entry point for the current version.
+- The previously committed personal-looking demo user record was replaced with synthetic sample data.
+- Historical `.class` files remain in the repository as existing artifacts, while new generated classes are ignored.
+- macOS/editor temporary files previously tracked during upload cleanup have been removed.
+- `Travel Agency GUI/Start.java` is the recommended entry point.
+- `user data/` is preserved as a separate earlier implementation rather than presented as part of the Swing architecture.
 
 ## Project status
 
-**Academic group-project implementation / portfolio demonstration.** The repository is useful for demonstrating Java Swing UI composition, event handling, package-selection logic, basic local persistence, and multi-screen desktop application flow; it is not a deployable travel-booking/payment service.
-
-## Maintainer
-
-**MD Alif Ziad Sarkar**  
-BSc in Computer Science and Engineering, American International University-Bangladesh (AIUB)
+**Academic coursework / portfolio demonstration.** The repository demonstrates Java desktop UI development, package-selection workflows, local file I/O, and basic administrator/user interactions. It is not a deployable travel-booking, identity-management, or payment-processing service.
